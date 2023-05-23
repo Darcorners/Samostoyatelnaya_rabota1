@@ -1,5 +1,4 @@
 import pymysql
-import Config
 from Config import host, login, password, database
 
 try:
@@ -7,7 +6,8 @@ try:
         host=host,
         user=login,
         password=password,
-        database=database
+        database=database,
+        cursorclass = pymysql.cursors.DictCursor
     )
     print('Соединение успешно')
 

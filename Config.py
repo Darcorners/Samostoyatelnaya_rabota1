@@ -1,4 +1,4 @@
 host = 'localhost'
 login = 'root'
-password = 'root'
-database = 'transfer'
+password = ''
+database = 'transfers'
