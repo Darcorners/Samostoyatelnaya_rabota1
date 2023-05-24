@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 import pymysql
 import Config
 from ConnDB import connection
@@ -38,8 +39,10 @@ try:
                     elif es == '2':
                         print('\nВведите айди АКТИВНОГО перевода')
                         trans_id = input('Ввод: ')
-                        commit_transfers_query = f""" UPDATE history SET status = 'delivered' WHERE received_user_id = {id_query} AND id = {trans_id} AND status = 'active'""";
-                        select_transfers_query = f""" SELECT * FROM history WHERE received_user_id = {id_query} AND id = {trans_id} AND status = 'active'"""
+                        Date = datetime.now()
+                        Date = Date.strftime("%Y-%m-%d %H:%M:%S")
+                        commit_transfers_query = f""" UPDATE history SET status = 'delivered', Received_time = '{Date}' WHERE received_user_id = {id_query} AND id = {trans_id} AND status = 'active'""";
+                        select_transfers_query = f""" SELECT * FROM history WHERE received_user_id = {id_query} AND id = {trans_id} AND status = 'delivered'"""
                         cursor.execute(commit_transfers_query)
                         result_query = cursor.fetchall()
                         connection.commit()
