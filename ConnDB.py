@@ -7,9 +7,11 @@ try:
         host=host,
         user=login,
         password=password,
-        database=database
+        database=database,
+
+    cursorclass= pymysql.cursors.DictCursor
     )
-    print('Соединение успешно')
+    print('Соединение успешно\n')
 
 except Exception as ex:
     print('Программа завершена с ошибками')
